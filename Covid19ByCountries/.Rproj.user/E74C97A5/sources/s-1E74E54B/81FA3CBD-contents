@@ -1,0 +1,43 @@
+library(dplyr)
+library(stringr)
+library(ggplot2)
+
+# Buck data from many countries 
+Rawfile <- read.csv("owid-covid-data.csv")
+Countries <- Rawfile %>%
+  select (c(location, date, total_cases, new_cases, new_cases_smoothed, 
+            total_deaths, new_deaths, new_deaths_smoothed, reproduction_rate,
+            total_tests, total_tests_per_thousand, population_density))
+
+glimpse(Countries)
+
+# Filter for specific countries and cleaning data
+Vietnam <- Countries %>%
+  filter (location == 'Vietnam') %>%
+  select (!location);
+
+# From Vietnam dataset, new_cases_smoothed, total_deaths, new_deaths, 
+# new_deaths_smoothed, : set 0; reproduction_rate and total_test: ?!
+Vietnam[is.na(Vietnam)] <- -7777
+
+
+
+glimpse(Vietnam)
+
+Cleanfile %>%
+  select (c(Location, Date, New.cases, New.deaths)) %>% 
+  group_by(Location) %>%
+  summarise(total_death=sum(New.deaths), total_case=sum(New.cases)) %>%
+  mutate(death_rate = total_death/total_case)
+  distinct() -> Countries
+
+Cleanfile %>%
+  select(c(Location, Date, Total.deaths, Total.cases)) %>%
+  group_by("Location") %>%
+  summarise(Location, real_deaths=max(Total.deaths), real_cases=max(Total.cases)) %>%
+  distinct() -> RealCountries
+  
+ 
+  
+# Vietnam <- Cleanfile[Cleanfile$Location=='Vietnam', ]
+  

@@ -1,0 +1,16 @@
+library(dplyr)
+# library(plyr)
+library(stringr)
+library(lubridate)
+library(ggplot2)
+
+# Load data
+Indonesia <- read.csv("trial/Clean-data/Indonesia.csv")
+
+# Clean data
+Cleanfile <- Readfile
+Cleanfile$New.cases[is.na(Readfile$New.cases)] <- 0
+Cleanfile$New.deaths[is.na(Readfile$New.deaths)] <- 0
+
+
+glimpse(Cleanfile)

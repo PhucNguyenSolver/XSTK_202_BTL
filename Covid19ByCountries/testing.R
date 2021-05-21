@@ -1,0 +1,50 @@
+library(dplyr)
+library(stringr)
+library(ggplot2)
+
+# Import data from csv
+Rawfile <- read.csv("owid-covid-data.csv")
+
+# Load buck data from many countries 
+Countries <- Rawfile %>%
+  select (c(location, date, total_cases, new_cases, new_cases_smoothed, 
+            total_deaths, new_deaths, new_deaths_smoothed, reproduction_rate,
+            total_tests, total_tests_per_thousand, population_density))
+
+SimpleCountries <- Rawfile %>%
+  select (c(location, date, total_cases, new_cases, total_deaths, new_deaths))
+
+glimpse(Countries)
+glimpse(SimpleCountries)
+
+
+# Filter for specific_country and cleaning data
+specific_country <- 'Vietnam'
+SimpleVietnam <- SimpleCountries %>%
+  filter (location == specific_country) %>%
+  arrange(date)
+
+SimpleVietnam[is.na(SimpleVietnam)] <- 0
+
+glimpse(SimpleVietnam)
+
+
+# Attempt to group data weekly
+weekly <- SimpleVietnam
+
+id <- rownames(weekly)
+weekly <- cbind(id=as.numeric(id), weekly)
+glimpse(weekly)
+
+WeeklyVietnam <- weekly %>%
+  mutate(week=id%/%7) %>%
+  group_by(week) %>%
+  summarise(week, weekly_cases=sum(new_cases), weekly_deaths=sum(new_deaths)) %>%
+  arrange(week) %>%
+  distinct(week, .keep_all=TRUE)
+  
+glimpse(WeeklyVietnam)
+
+# TODO: collect this script into function: 
+#     [df] GetWeeklyData(string country)
+
