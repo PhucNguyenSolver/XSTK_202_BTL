@@ -1,0 +1,32 @@
+{
+    "id": "8B31A3B0",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1621615684356.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "expression": "WeeklyVietnam",
+        "caption": "WeeklyVietnam",
+        "totalObservations": 69,
+        "displayedObservations": 69,
+        "variables": 3,
+        "cacheKey": "D72F609D",
+        "object": "WeeklyVietnam",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=WeeklyVietnam&cache_key=D72F609D&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 7954884637903448438,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1621615684356,
+    "read_only": false,
+    "read_only_alternatives": []
+}
