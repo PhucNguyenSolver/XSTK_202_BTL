@@ -20,8 +20,9 @@ glimpse(Countries)
 glimpse(SimpleCountries)
 
 
+
 # Filter for specific_country and cleaning data
-specific_country <- 'United Kingdom'
+specific_country <- 'United States'
 SimpleVietnam <- SimpleCountries %>%
   filter (location == specific_country) %>%
   arrange(date)
@@ -39,7 +40,7 @@ weekly <- cbind(id=as.numeric(id), weekly)
 glimpse(weekly)
 
 WeeklyVietnam <- weekly %>%
-  mutate(week=id%/%7) %>%
+  mutate(week=id%/%1) %>%
   group_by(week) %>%
   summarise(week, weekly_cases=sum(new_cases), weekly_deaths=sum(new_deaths)) %>%
   arrange(week) %>%
@@ -52,10 +53,10 @@ glimpse(WeeklyVietnam)
 
 wdata <- WeeklyVietnam%>%
   select(c(deathrate))
-# gghistogram(wdata, x = "deathrate", bins = 30, 
-#             fill = "#0073C2FF", color = "#0073C2FF",
-#             add = "mean", rug = TRUE)
-ggdensity(wdata, x = "deathrate", 
-          fill = "#0073C2FF", color = "#0073C2FF",
-          add = "mean", rug = TRUE)
-  
+gghistogram(wdata, x = "deathrate", bins = 30,
+            fill = "#0073C2FF", color = "#0073C2FF",
+            add = "mean", rug = TRUE)
+# ggdensity(wdata, x = "deathrate", 
+#           fill = "#0073C2FF", color = "#0073C2FF",
+#           add = "mean", rug = TRUE)
+
