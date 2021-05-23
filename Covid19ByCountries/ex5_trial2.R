@@ -29,34 +29,9 @@ Classes$death_rate <- cut(Classes$death_rate,
                          )
 Classes$life_expectancy <- cut(Classes$life_expectancy,
                           breaks=c(-Inf, 65, 75, Inf),
-                          labels=c("Trung bình", "Cao", "Rất cao"),
+                          labels=c("Medium", "High", "Very high"),
 )
 
 write.csv(Classes, "data/classification/trial1.csv")
-# ACountry <- ByCountry
-# ACountry <- ByCountry %>% filter(continent=="Europe")
-# ACountry <- ByCountry %>% filter(continent=="Asia")
-# ACountry <- ByCountry %>% filter(continent=="African")
 
-# ggplot(ACountry, aes(y=infect_rate, x=density), .xlim=c(0, 1)) +
-#   geom_point(shape=18, color="blue") +
-#   geom_smooth(method=lm,  linetype="dashed",
-#               color="darkred", fill="blue")
-# 
-# glimpse(ByCountry)
-
-
-# plot(ByCountry$infect_rate, ByCountry$density)
-# abline(lm (ByCountry$density ~ ByCountry$infect_rate))
-# abline(472.606, -6.025)
-
-# watcher <- ByCountry %>%
-#   summarise(dependent=infect_rate/density)
-#   
-# 
-# watcher %>%
-#   select(c(dependent)) %>%
-#   gghistogram(x = "dependent", .binwidth=0.05, xlim=c(0, 0.25),
-#             fill = "#0073C2FF", color = "#0073C2FF",
-#             add = "mean", rug = TRUE)
 
